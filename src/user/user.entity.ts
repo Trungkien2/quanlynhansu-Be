@@ -8,7 +8,13 @@ import {
   PrimaryKey,
   CreatedAt,
   UpdatedAt,
+  ForeignKey,
+  BelongsTo,
+  HasMany,
 } from 'sequelize-typescript';
+import { UserRole } from 'src/core/contanst/user-role.enum';
+import { Department } from 'src/department/entities/department.entity';
+import { Salary } from 'src/salary/entities/salary.entity';
 
 @Table({
   tableName: 'tbl_user',
@@ -40,6 +46,19 @@ export class User extends Model<User> {
   password: string;
 
   @Column({
+    type: DataType.STRING,
+    allowNull: true,
+  })
+  phone: string;
+
+  @Column({
+    type: DataType.STRING,
+    defaultValue: UserRole.USER,
+  })
+  role: UserRole;
+
+  // default value
+  @Column({
     type: DataType.BIGINT,
     defaultValue: 0,
   })
@@ -59,4 +78,14 @@ export class User extends Model<User> {
 
   @UpdatedAt
   UpdatedAt: Date;
+  // asscosation
+  @ForeignKey(() => Department)
+  @Column({ field: 'department_id', type: DataType.UUID })
+  department_id: string;
+
+  @BelongsTo(() => Department)
+  department: Department;
+
+  @HasMany(() => Salary)
+  salary_list: Salary[];
 }

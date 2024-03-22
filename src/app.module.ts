@@ -15,6 +15,8 @@ import { APP_FILTER, RouterModule } from '@nestjs/core';
 import { ApiRoute, allModule } from './router';
 import { AuthModule } from './auth/auth.module';
 import { AllExceptionsFilter } from './core/filter/all-exception.filter';
+import { DepartmentModule } from './department/department.module';
+import { SalaryModule } from './salary/salary.module';
 
 @Module({
   imports: [
@@ -23,6 +25,8 @@ import { AllExceptionsFilter } from './core/filter/all-exception.filter';
     // RouterModule.register(ApiRoute),
     ...allModule,
     AuthModule,
+    DepartmentModule,
+    SalaryModule,
   ],
   controllers: [AppController],
   providers: [

@@ -30,7 +30,7 @@ export class UserService extends CrudService<User> {
         );
         await t.commit();
 
-        return newUser;
+        return { user: newUser };
       }
     } catch (error) {
       console.log(error);
