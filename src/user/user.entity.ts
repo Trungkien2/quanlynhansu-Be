@@ -15,6 +15,7 @@ import {
 import { UserRole } from 'src/core/contanst/user-role.enum';
 import { Department } from 'src/department/entities/department.entity';
 import { Salary } from 'src/salary/entities/salary.entity';
+import { Timekeeping } from 'src/timekeeping/entities/timekeeping.entity';
 
 @Table({
   tableName: 'tbl_user',
@@ -54,6 +55,9 @@ export class User extends Model<User> {
   @Column({
     type: DataType.STRING,
     defaultValue: UserRole.USER,
+    validate: {
+      isIn: [[UserRole.USER, UserRole.ADMIN, UserRole.SUPER_ADMIN]],
+    },
   })
   role: UserRole;
 
@@ -88,4 +92,7 @@ export class User extends Model<User> {
 
   @HasMany(() => Salary)
   salary_list: Salary[];
+
+  @HasMany(() => Timekeeping)
+  timekeeping_list: Timekeeping[];
 }

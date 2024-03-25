@@ -28,6 +28,16 @@ export class Department extends Model<Department> {
   @Column({
     type: DataType.STRING,
     allowNull: false,
+    validate: {
+      isIn: [
+        [
+          DepartmentName.ACCOUNTANT,
+          DepartmentName.HR,
+          DepartmentName.IT,
+          DepartmentName.MARKETING,
+        ],
+      ],
+    },
   })
   name: DepartmentName;
 

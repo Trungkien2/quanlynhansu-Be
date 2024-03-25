@@ -17,6 +17,7 @@ import { AuthModule } from './auth/auth.module';
 import { AllExceptionsFilter } from './core/filter/all-exception.filter';
 import { DepartmentModule } from './department/department.module';
 import { SalaryModule } from './salary/salary.module';
+import { TimekeepingModule } from './timekeeping/timekeeping.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { SalaryModule } from './salary/salary.module';
     AuthModule,
     DepartmentModule,
     SalaryModule,
+    TimekeepingModule,
   ],
   controllers: [AppController],
   providers: [
